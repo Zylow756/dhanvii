@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from './Nav.module.css';
 import logo from '../../assets/images/logo.jpeg';
-/*import { useState } from "react";*/
 
 const Nav = () => {
   return (

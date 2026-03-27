@@ -8,7 +8,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
-      
+      /*<div>
+      <Nav />
+      <div style={{ padding: "20px" }}>
+        <h1>Welcome to Zylow</h1>
+        <p>Scroll down to see sticky effect...</p>
+        <div style={{ height: "1500px" }}></div>
+      </div>
+    </div>*/
 
   );
 }

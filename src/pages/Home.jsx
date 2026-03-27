@@ -1,12 +1,11 @@
 import Nav from '../components/Nav/Nav';
-import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import banner from '../assets/images/banner.jpg';
 import styles from './Home.module.css'; 
 
 const Home = () => {
     return (
-            <div className={styles['main-container']}>
+            <div className={styles['root']}>
                 <Nav />
                 <div className={styles['banner-container']}>
                     <img src={banner} alt="Banner" className={styles['banner-img']} />
@@ -20,16 +19,12 @@ const Home = () => {
                                 <span className={styles['error-message']} id="nameError"></span>
                             </div>
                             <div className={styles['form-group']}>
-                                <input type="email" id="email" name="email" placeholder="Your Email" required />
-                                <span className={styles['error-message']} id="emailError"></span>
-                            </div>
-                            <div className={styles['form-group']}>
                                 <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required />
                                 <span className={styles['error-message']} id="phoneError"></span>
                             </div>
                             <div className={styles['form-group']}>
-                                <textarea id="message" name="message" placeholder="Your Message" rows="5" required ></textarea>
-                                <span className={styles['error-message']} id="messageError"></span>
+                                <input type="text" id="qualification" name="qualification" placeholder="Your Qualification" required />
+                                <span className={styles['error-message']} id="qualificationError"></span>
                             </div>
                             <button type="submit" className={styles['submit-button']}>
                                 Send Message

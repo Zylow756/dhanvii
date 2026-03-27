@@ -2,28 +2,61 @@ import { Link } from "react-router-dom";
 import styles from './Nav.module.css';
 import logo from '../../assets/images/logo.jpeg';
 
+import React, { useState } from "react";
+
 const Nav = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
   return (
-    <Nav className={styles.navbar}>
-      <div>
-        <img src={logo} alt="Logo"   width="200px" height="100px" />
-      </div>
-    <div className={styles['topnav']} id="myTopnav">
-      <Link to="/home">Home</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/about">About</Link>
-      <Link to="/courses">Courses</Link>
-      <div className={styles['dropdown']}>
-        <button className={styles['dropbtn']}>Gallery</button>
-        <div className={styles['dropdown-content']}>
-          <Link to="/func-gallery">Functions</Link>
-          <Link to="/cong-gallery">Congratulations</Link>
-          <Link to="/instit-gallery">Institute</Link>
+    <nav className={styles.navbar}>
+      <div className={styles['nav-container']}>
+
+        {/* Logo */}
+        <div className={styles['logo']}>
+          <img src={logo} alt="logo" />
         </div>
+
+        {/* Hamburger Menu (Mobile) */}
+        <div
+          className={`${styles["menu-icon"]} ${menuOpen ? styles["open"] : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </div>
+
+        {/* Overlay */}
+        {menuOpen && (
+          <div
+            className={styles['overlay']}
+            onClick={() => setMenuOpen(false)}
+          ></div>
+        )}
+
+        {/* Navigation Links */}
+        <ul className={`${styles["nav-links"]} ${menuOpen ? styles["active"] : ""}`}>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/about">About</Link></li>
+
+          {/* Dropdown */}
+          <li className={styles.dropdown}>
+            <span onClick={() => setOpen(!open)}>Gallery ▾</span>
+
+            {open && (
+              <ul className={styles["dropdown-menu"]}>
+                <li><Link to="/func-gallery">Functions</Link></li>
+                <li><Link to="/cong-gallery">Congratulations</Link></li>
+                <li><Link to="/instit-gallery">Institute</Link></li>
+              </ul>
+            )}
+          </li>
+          <li><Link to="/courses">Courses</Link></li>
+          <li><Link to="/login">Login</Link></li>
+        </ul>
+
       </div>
-  <Link to="/login">Login</Link>
-</div>
-</Nav>
+    </nav>
   );
 };
 

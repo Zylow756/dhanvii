@@ -29,7 +29,7 @@ const Footer = () => {
       </div>
       <div className={styles['footer-area']}>
       <div className={styles['footer-bottom-area']}>
-        <p>© 2026 Dhanvii Web Portal. All rights reserved.</p>
+        <p>© Dhanvii Accounting System. All rights reserved.</p>
         <div className={styles['footer-social-media']}>
           <a href="https://www.facebook.com/profile.php?id=100063563501750"><img src={facebookIcon} alt="Facebook" width="30px" height="30px" /></a>
           <a href="https://www.linkedin.com/in/dhanvii-accounting-system-29092915b"><img src={linkedinIcon} alt="LinkedIn" width="30px" height="30px" /></a>

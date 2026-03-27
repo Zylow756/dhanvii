@@ -53,17 +53,16 @@
 body {
   margin: 0;
 }
-
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  justify-content: center; 
+}
+#root > div {
+  width: 100%;
+  margin: 0 auto;     
 }
 
 h1,
@@ -85,8 +84,7 @@ h1 {
 h2 {
   font-size: 24px;
   line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
+  letter-spacing: -0.24px; margin: 0 auto;
   @media (max-width: 1024px) {
     font-size: 20px;
   }

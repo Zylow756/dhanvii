@@ -7,25 +7,26 @@ import "swiper/css/pagination";
 
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import styles from "./StudentReview.module.css";
+import studentImage from '../../assets/images/student-image.jfif';
 
 const reviews = [
   {
     name: "Aman Sharma",
-    image: "/images/student1.jpg",
+    image: studentImage,
     review:
       "This coaching completely changed my life. Faculty support and doubt sessions are amazing!",
     company: "Selected in TCS",
   },
   {
     name: "Priya Verma",
-    image: "/images/student2.jpg",
+    image: studentImage,
     review:
       "Best institute in Kota! Structured learning and regular tests helped me crack my exam.",
     company: "Selected in Infosys",
   },
   {
     name: "Rahul Meena",
-    image: "/images/student3.jpg",
+    image: studentImage,
     review:
       "Highly recommended! The environment here motivates you to push your limits.",
     company: "Selected in Wipro",

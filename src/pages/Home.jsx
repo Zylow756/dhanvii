@@ -1,5 +1,6 @@
 import Nav from '../components/Nav/Nav';
 import Footer from '../components/Footer/Footer';
+import StudentReview from '../components/StudentReview/StudentReview';
 import styles from './Home.module.css'; 
 import banner from '../assets/images/banner.jpg';
 
@@ -12,7 +13,7 @@ const Home = () => {
                 </div>
                 <div className={styles['enquiry-form']}>
                     <div className={styles['contact-form-container']}>
-                        <h2>Enquiry Form</h2>
+                        <h2>Enquiry Form For Demo Classes</h2>
                         <form id="contactForm">
                             <div className={styles['form-group']}>
                                 <input type="text" id="name" name="name" placeholder="Your Name" required />
@@ -32,6 +33,7 @@ const Home = () => {
                         </form>
                     </div>
                 </div>
+                <StudentReview />
                 <Footer />
             </div>
         

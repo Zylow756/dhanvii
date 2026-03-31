@@ -44,7 +44,7 @@ const Nav = () => {
 
         {/* Navigation Links */}
         <ul className={`${styles["nav-links"]} ${menuOpen ? styles["active"] : ""}`}>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/home">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
 
@@ -61,33 +61,9 @@ const Nav = () => {
             )}
           </li>
           <li><Link to="/courses">Courses</Link></li>
-          <li><span onClick={() => setShowLogin(true)} className={styles.loginBtn}>
-            Login
-          </span></li>
-        </ul>{showLogin && (
-          <div className={styles.loginOverlay} onClick={() => setShowLogin(false)}>
+          <li><Link to="/login">Login</Link></li>
+        </ul>
 
-            <div
-              className={styles.loginPopup}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span
-                className={styles.closeBtn}
-                onClick={() => setShowLogin(false)}
-              >
-                ✖
-              </span>
-
-              <h2>Login</h2>
-
-              <input type="text" placeholder="Email or Phone" />
-              <input type="password" placeholder="Password" />
-
-              <button className={styles.loginSubmit}>Login</button>
-
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   );

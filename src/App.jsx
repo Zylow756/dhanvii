@@ -2,7 +2,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from "./pages/Contact";
 import Courses from "./pages/Courses";
-import Login from "./pages/Login";
+import Career from "./pages/Career";
 
 // Gallery Pages
 import FuncGallery from "./pages/gallery/FuncGallery";
@@ -17,7 +17,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/career" element={<Career />} />
 
         {/*  Gallery Routes */}
         <Route path="/func-gallery" element={<FuncGallery />} />

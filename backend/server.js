@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
+import cors from "cors";
 import mongoose from "mongoose";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+//  Correct MongoDB connection
+/*mongoose.connect("mongodb://127.0.0.1:27017/placement", {
 //  Correct MongoDB connection
 /*mongoose.connect("mongodb://127.0.0.1:27017/placement", {
   useNewUrlParser: true,

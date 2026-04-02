@@ -42,42 +42,42 @@ const Login = ({ onClose }) => {
 
   // Submit
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const validationErrors = validate();
-  setErrors(validationErrors);
+    const validationErrors = validate();
+    setErrors(validationErrors);
 
-  if (Object.keys(validationErrors).length === 0) {
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(form)
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (!res.ok) {
-        alert(data.message);
-      } else {
-        alert("Login successful...");// optional: store login state
-localStorage.setItem("isLoggedIn", true);
+        if (!res.ok) {
+          alert(data.message);
+        } else {
+          alert("Login successful...");// optional: store login state
+          localStorage.setItem("isLoggedIn", true);
 
-onClose();
+          onClose();
 
-// redirect to home/dashboard
-navigate("/career"); // OR "/dashboard"
-        //console.log(data);
+          // redirect to home/dashboard
+          navigate("/career"); // OR "/dashboard"
+          //console.log(data);
+        }
+
+      } catch (err) {
+        console.error(err);
+        alert("Server error");
       }
-
-    } catch (err) {
-      console.error(err);
-      alert("Server error");
     }
-  }
-};
+  };
 
   return (
     <div className={styles.overlay}>

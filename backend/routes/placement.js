@@ -1,5 +1,5 @@
 import express from "express";
-import Placement from "../models/Placement.js";
+import Placement from "../models/placement.js";
 
 const router = express.Router();
 

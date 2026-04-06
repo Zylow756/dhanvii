@@ -5,28 +5,9 @@
  .tdStyle {
      padding: 10px;
  }
-
- .editBtn {
-     background: #e74c3c;
-     color: #fff;
-     border: none;
-     padding: 6px 10px;
-     margin-right: 5px;
-     border-radius: 5px;
-     cursor: pointer;
- }
-
+ 
  .deleteBtn {
      background: #e74c3c;
-     color: #fff;
-     border: none;
-     padding: 6px 10px;
-     border-radius: 5px;
-     cursor: pointer;
- }
-
- .saveBtn {
-     background: #27ae60;
      color: #fff;
      border: none;
      padding: 6px 10px;

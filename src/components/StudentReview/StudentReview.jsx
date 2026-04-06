@@ -5,6 +5,7 @@ import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import styles from "./StudentReview.module.css";
 import studentImage from '../../assets/images/student-image.jfif';
+import { useNavigate } from "react-router-dom";
 
 const reviews = [
   {
@@ -12,25 +13,23 @@ const reviews = [
     image: studentImage,
     review:
       "This coaching completely changed my life. Faculty support and doubt sessions are amazing!",
-    company: "Selected in TCS",
   },
   {
     name: "Priya Verma",
     image: studentImage,
     review:
       "Best institute in Kota! Structured learning and regular tests helped me crack my exam.",
-    company: "Selected in Infosys",
   },
   {
     name: "Rahul Meena",
     image: studentImage,
     review:
       "Highly recommended! The environment here motivates you to push your limits.",
-    company: "Selected in Wipro",
   },
 ];
 
 const StudentReview = () => {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Student Success Stories</h2>
@@ -41,7 +40,7 @@ const StudentReview = () => {
         centeredSlides={true}
         slidesPerView={"auto"}
         loop={true}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 7000 }}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -55,11 +54,12 @@ const StudentReview = () => {
       >
         {reviews.map((item, index) => (
           <SwiperSlide key={index} className={styles.slide}>
-            <div className={styles.card}>
+            <div className={styles.card}
+              onClick={() => navigate("/Placement")}
+              style={{ cursor: "pointer" }}>
               <img src={item.image} alt={item.name} className={styles.image} />
               <p className={styles.review}>"{item.review}"</p>
               <h3 className={styles.name}>{item.name}</h3>
-              <div className={styles.company}>{item.company}</div>
             </div>
           </SwiperSlide>
         ))}

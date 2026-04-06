@@ -6,8 +6,6 @@ import Career from "./pages/Career";
 import Admin from "./pages/admin/Admin";
 import Services from "./pages/Services";
 import Placement from "./pages/Placement";
-
-
 // Gallery Pages
 import FuncGallery from "./pages/gallery/FuncGallery";
 import InstitGallery from "./pages/gallery/InstitGallery";

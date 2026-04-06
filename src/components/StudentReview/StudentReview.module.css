@@ -8,6 +8,7 @@
   font-size: 32px;
   margin-bottom: 40px;
   color: #0f172a;
+  text-align: center;
 }
 
 .card {
@@ -25,8 +26,8 @@
 }
 
 .image {
-  width: 90px;
-  height: 90px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
@@ -44,14 +45,4 @@
   font-size: 18px;
   font-weight: bold;
   color: #0f172a;
-}
-
-.company {
-  margin-top: 10px;
-  font-size: 14px;
-  color: white;
-  background: #22c55e;
-  padding: 6px 12px;
-  border-radius: 20px;
-  display: inline-block;
 }

@@ -5,20 +5,21 @@ const router = express.Router();
 
 // Save placement form
 router.post("/add", async (req, res) => {
-  console.log("Incoming Data:", req.body);
   try {
-    const newPlacement = new Placement(req.body);
-    await newPlacement.save();
+  console.log("Incoming Data:", req.body);
+    const newData = new Placement(req.body);
+    await newData.save();
 
 console.log("Saved Successfully ");
-    res.json({ message: "Placement data saved" });
     res.status(201).json({
   success: true,
-  message: "Placement data saved successfully"
+  message: "Placement data saved successfully",
+      data: newData
 });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err.message });
+    console.log("SAVE ERROR:",err);
+    res.status(500).json({ error: err.message,
+      err: err.errors  });
   }
 });
 

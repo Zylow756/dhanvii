@@ -15,10 +15,36 @@ export default function Career() {
     jobTitle: "",
     expectedSalary: "",
     jobLocation: "",
-    family: Array(3).fill({ relation: "", name: "", education: "", working: "" }),
-    academic: Array(3).fill({ qualification: "", stream: "", board: "", year: "", percentage: "" }),
-    professional: Array(3).fill({ course: "", institute: "", duration: "", remark: ""}),
-    experience: Array(3).fill({ company: "", post: "", type: "", from: "", to: "", salary: "" })
+    family: Array.from({ length: 3 }, () => ({
+  relation: "",
+  name: "",
+  education: "",
+  working: ""
+})),
+
+academic: Array.from({ length: 3 }, () => ({
+  qualification: "",
+  stream: "",
+  board: "",
+  year: "",
+  percentage: ""
+})),
+
+professional: Array.from({ length: 3 }, () => ({
+  course: "",
+  institute: "",
+  duration: "",
+  remark: ""
+})),
+
+experience: Array.from({ length: 3 }, () => ({
+  company: "",
+  post: "",
+  type: "",
+  from: "",
+  to: "",
+  salary: ""
+}))
   });
 
   const [errors, setErrors] = useState({});
@@ -203,10 +229,10 @@ export default function Career() {
           <tbody>
             {form.professional.map((row, i) => (
               <tr key={i}>
-                <td><input className={styles["table-input"]} value={row.qualification} onChange={(e) => handleTableChange("professional", i, "course", e.target.value)} /></td>
-                <td><input className={styles["table-input"]} value={row.stream} onChange={(e) => handleTableChange("professional", i, "institute", e.target.value)} /></td>
-                <td><input className={styles["table-input"]} value={row.board} onChange={(e) => handleTableChange("professional", i, "duration", e.target.value)} /></td>
-                <td><input className={styles["table-input"]} value={row.year} onChange={(e) => handleTableChange("professional", i, "remark", e.target.value)} /></td>
+                <td><input className={styles["table-input"]} value={row.course} onChange={(e) => handleTableChange("professional", i, "course", e.target.value)} /></td>
+                <td><input className={styles["table-input"]} value={row.institute} onChange={(e) => handleTableChange("professional", i, "institute", e.target.value)} /></td>
+                <td><input className={styles["table-input"]} value={row.duration} onChange={(e) => handleTableChange("professional", i, "duration", e.target.value)} /></td>
+                <td><input className={styles["table-input"]} value={row.remark} onChange={(e) => handleTableChange("professional", i, "remark", e.target.value)} /></td>
               </tr>
             ))}
           </tbody>

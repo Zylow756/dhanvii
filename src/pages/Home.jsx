@@ -50,7 +50,6 @@ const Home = () => {
       <Nav />
       <header className={styles['box-contain']}>
       <h1>Best Accounting Institute in Kota</h1>
-      {/*<p>Learn GST,Tally Prime & Income Tax with Practical Training</p>*/}
       </header>
       <RandomAd />
       <div className={styles['enquiry-form']}>

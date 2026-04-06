@@ -12,7 +12,7 @@
 /* Grid Layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* increased */
   gap: 25px;
 }
 
@@ -77,12 +77,13 @@
 
 /* Show Content */
 .show {
-  max-height: 500px;
+  max-height: 1500px;
   margin-top: 10px;
 }
 
 /* List */
 .content ul {
+  list-style: none;
   padding-left: 20px;
 }
 

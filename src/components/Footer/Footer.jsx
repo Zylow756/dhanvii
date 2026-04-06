@@ -8,24 +8,6 @@ import youtubeIcon from '../../assets/images/youtube.png';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles['footer-top-area']}>
-        <div className={styles['footer-widget-1']}>
-          <h3>About Us</h3>
-          <p>Dhanvii Web Portal is a leading platform for connecting businesses and customers. We provide
-            a
-            wide range of services to help businesses grow and succeed in the digital world.</p>
-        </div>
-        <div className={styles['footer-widget-2']}>
-          <h3>Our Services</h3>
-          <ul className={styles['footer-services']}>
-            <li>Book Keeping</li>
-            <li>Registration</li>
-            <li>Taxation</li>
-            <li>Advisory</li>
-            <li>Finance</li>
-          </ul>
-        </div>
-      </div>
       <div className={styles['footer-area']}>
       <div className={styles['footer-bottom-area']}>
         <p>© Dhanvii Accounting System. All rights reserved.</p>

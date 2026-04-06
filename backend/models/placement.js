@@ -30,16 +30,24 @@ const FormSchema = new mongoose.Schema({
     },
   ],
 
-  experience: [
+  professional: [
     {
-      company: String,
-      post: String,
-      type: String,
-      from: String,
-      to: String,
-      salary: String,
+      course: String,
+      institute: String,
+      duration: String,
+      remark: String,
     },
   ],
+  experience: [
+  {
+    company: String,
+    post: String,
+    type: String,
+    from: String,
+    to: String,
+    salary: String
+  }
+]
 });
 
 const placementSchema = new mongoose.Schema({
@@ -48,4 +56,4 @@ const placementSchema = new mongoose.Schema({
   qualification: String,
 }, { timestamps: true }); // 👈 MUST ADD
 
-export default mongoose.model("Form", FormSchema,placementSchema);
+export default mongoose.model("Placement", FormSchema,placementSchema);

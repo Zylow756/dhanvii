@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 import styles from '../../assets/css/Admin.module.css';
-import { SiPantheon } from "react-icons/si";
 
 const Admin = () => {
   const [data, setData] = useState([]);
-  const [editId, setEditId] = useState(null);
+  const [editId] = useState(null);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -35,25 +34,6 @@ const Admin = () => {
     await fetch(`http://localhost:5000/api/enquiry/${id}`, {
       method: "DELETE",
     });
-    fetchData();
-  };
-
-  //  Edit click
-  const handleEdit = (item) => {
-    setEditId(item._id);
-    setForm(item);
-  };
-
-  //  Update
-  const handleUpdate = async () => {
-    await fetch(`http://localhost:5000/api/enquiry/${editId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    setEditId(null);
-    setForm({ name: "", phone: "", qualification: "" });
     fetchData();
   };
 
@@ -144,19 +124,8 @@ const Admin = () => {
                   </td>
 
                   <td className={styles.tdStyle}>
-                    {editId === item._id ? (
-                      <button className={styles.saveBtn} onClick={handleUpdate}>
-                        💾 Save
-                      </button>
-                    ) : (
+                     
                       <>
-                        <button
-                          className={styles.editBtn}
-                          onClick={() => handleEdit(item)}
-                        >
-                          ✏️ Edit
-                        </button>
-
                         <button
                           className={styles.deleteBtn}
                           onClick={() => handleDelete(item._id)}
@@ -164,7 +133,7 @@ const Admin = () => {
                           🗑 Delete
                         </button>
                       </>
-                    )}
+                    
                   </td>
                 </tr>
               ))}

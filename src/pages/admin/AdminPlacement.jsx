@@ -1,0 +1,238 @@
+import React, { useEffect, useState } from "react";
+import AdminNav from '../../components/AdminNav/AdminNav';
+import styles from '../../assets/css/Admin.module.css';
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
+export default function AdminPlacement() {
+  const [data, setData] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = () => {
+    fetch("http://localhost:5000/api/placement/all")
+      .then(res => res.json())
+      .then(resData => {
+        console.log(resData);
+        if (Array.isArray(resData)) {
+          setData(resData);
+        } else {
+          setData([]);
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleDelete = async (id) => {
+  if (!window.confirm("Are you sure?")) return;
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/placement/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    fetchData(); // refresh table
+  } catch (err) {
+    console.error("Delete failed:", err);
+  }
+};
+
+const exportToExcel = () => {
+  const workbook = XLSX.utils.book_new();
+  // Format data for Excel
+  const mainData  = data.map(item => ({
+    Name: item.name,
+    Mobile: item.mobile,
+    Address: item.address,
+    DOB:item.dob,
+    Gender: item.gender,
+    Language: item.language,
+    JobTitle: item.jobTitle,
+    ExpectedSalary: item.expectedSalary,
+    JobLocation: item.jobLocation
+  }));
+
+  // Convert to worksheet
+  const mainSheet = XLSX.utils.json_to_sheet(mainData );
+  XLSX.utils.book_append_sheet(workbook, mainSheet, "Basic Info");
+
+  // Create workbook
+  XLSX.utils.book_append_sheet(workbook, mainSheet, "Placements");
+
+ // ✅ FAMILY SHEET
+  const familyData = [];
+  data.forEach(item => {
+    item.family?.forEach(f => {
+      familyData.push({
+        Name: item.name,
+        Relation: f.relation,
+        FamilyName: f.name,
+        Education: f.education,
+        Working: f.working
+      });
+    });
+  });
+
+  const familySheet = XLSX.utils.json_to_sheet(familyData);
+  XLSX.utils.book_append_sheet(workbook, familySheet, "Family");
+
+  // ✅ ACADEMIC SHEET
+  const academicData = [];
+  data.forEach(item => {
+    item.academic?.forEach(a => {
+      academicData.push({
+        Name: item.name,
+        Qualification: a.qualification,
+        Stream: a.stream,
+        Board: a.board,
+        Year: a.year,
+        Percentage: a.percentage
+      });
+    });
+  });
+
+  const academicSheet = XLSX.utils.json_to_sheet(academicData);
+  XLSX.utils.book_append_sheet(workbook, academicSheet, "Academic");
+
+  // ✅ PROFESSIONAL SHEET
+  const professionalData = [];
+  data.forEach(item => {
+    item.professional?.forEach(p => {
+      professionalData.push({
+        Name: item.name,
+        Course: p.course,
+        Institute: p.institute,
+        Duration: p.duration,
+        Remark: p.remark
+      });
+    });
+  });
+
+  const professionalSheet = XLSX.utils.json_to_sheet(professionalData);
+  XLSX.utils.book_append_sheet(workbook, professionalSheet, "Professional");
+
+  // ✅ EXPERIENCE SHEET
+  const experienceData = [];
+  data.forEach(item => {
+    item.experience?.forEach(e => {
+      experienceData.push({
+        Name: item.name,
+        Company: e.company,
+        Post: e.post,
+        Type: e.type,
+        From: e.from,
+        To: e.to,
+        Salary: e.salary
+      });
+    });
+  });
+
+  const experienceSheet = XLSX.utils.json_to_sheet(experienceData);
+  XLSX.utils.book_append_sheet(workbook, experienceSheet, "Experience");
+
+  // Generate Excel file
+  const excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array"
+  });
+
+  const fileData = new Blob([excelBuffer], {
+    type: "application/octet-stream"
+  });
+
+  saveAs(fileData, "placement_data.xlsx");
+};
+
+  if (loading) return <h2>Loading...</h2>;
+
+  return (
+    <div className={styles['root']}>
+      <AdminNav />
+      <div style={{ padding: "20px" }}>
+        <h1>Admin Dashboard</h1>
+<span className={styles.exportBtn} onClick={exportToExcel}>
+ 📥  Export to Excel
+</span>
+        {/* TABLE */}
+        <table border="1" cellPadding="10" width="100%" marginTop="10">
+          <thead style={{ background: "#eee" }}>
+            <tr>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Job</th>
+              <th>Expected Salary</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {data.map((item) => (
+              <tr key={item._id}>
+                <td className={styles.thStyle}>{item.name}</td>
+                <td className={styles.thStyle}>{item.mobile}</td>
+                <td className={styles.thStyle}>{item.jobTitle}</td>
+                <td className={styles.thStyle}>{item.expectedSalary}</td>
+
+                <td>
+                  <button  onClick={() => setSelected(item)}>View</button>
+                  <button onClick={() => handleDelete(item._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* FULL DETAILS MODAL */}
+        {selected && (
+          <div className={styles.overlayStyle}>
+            <div className={styles.modalStyle}>
+              <div className={styles.headerSty}>
+                <h2>{selected.name}</h2>
+              </div>
+              <div className={styles.bodyStyle}>
+                <p><b>Mobile:</b> {selected.mobile}</p>
+                <p><b>Address:</b> {selected.address}</p>
+                <p><b>DOB:</b> {selected.dob}</p>
+                <p><b>Gender:</b> {selected.gender}</p>
+                <p><b>Language:</b> {selected.language}</p>
+                <p><b>Job Title:</b> {selected.jobTitle}</p>
+                <p><b>Expected Salary:</b> {selected.expectedSalary}</p>
+                <p><b>Job Location:</b> {selected.jobLocation}</p>
+
+                <h3>Family Details</h3>
+                {selected.family.map((f, i) => (
+                  <p key={i}>{f.relation} - {f.name} - {f.education} - {f.working}</p>
+                ))}
+
+                <h3>Academic Qualification</h3>
+                {selected.academic.map((a, i) => (
+                  <p key={i}>{a.qualification} - {a.stream} - {a.board} - {a.year} - {a.percentage}%</p>
+                ))}
+
+                <h3>Professional Qualification</h3>
+                {selected.professional.map((b, i) => (
+                  <p key={i}>{b.course} - {b.institute} - {b.duration} - {b.remark}</p>
+                ))}
+
+                <h3>Work Experience</h3>
+                {selected.experience.map((c, i) => (
+                  <p key={i}>{c.company} - {c.post} - {c.type} - {c.from} - {c.to} - {c.salary}</p>
+                ))}
+                <button onClick={() => setSelected(null)}>Close</button>
+              </div>
+            </div></div>
+        )}
+      </div></div>
+  );
+}

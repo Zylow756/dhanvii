@@ -2,7 +2,7 @@ import Nav from '../components/Nav/Nav';
 import Footer from '../components/Footer/Footer';
 import styles from '../assets/css/Contact.module.css';
 
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp, FaBuilding } from "react-icons/fa";
 
 const Contact = () => {
     return (
@@ -22,40 +22,27 @@ const Contact = () => {
 
                 {/* RIGHT - CONTACT */}
                 <div className={styles.contact}>
-                    <h2>Contact Us</h2>
+                    <h2>Connect With Us!</h2>
 
                     <div className={styles.item}>
-                        <FaMapMarkerAlt className={styles.icon} />
+                        <FaPhoneAlt className={styles.icon} />
+                        <div><strong>Call Us At<br /></strong>
+                        +91 9414729662 [Faculty]<br /> +91 8824248824 [Counselor]<br/> +91 8955989444 [Placement]<br/>+91 8766166166 [WhatsApp]</div>
+                    </div>
+
+                    <div className={styles.item}>
+                        <FaEnvelope className={styles.icon} />
+                        <div><strong>Mail Us At</strong><br/>contact.dhanvi@gmail.com<br/>enquiry.dhanvi@gmail.com</div>
+                    </div>
+
+                    <div className={styles.item}>
+                        <FaBuilding  className={styles.icon} />
                         <div>
+                            <strong>Address</strong><br/>
                             267, Ganesh Nagar,<br />
                             Near Khade Ganesh Ji Temple,<br />
                             Kota [Rajasthan] - 324010
                         </div>
-                    </div>
-
-                    <div className={styles.item}>
-                        <FaPhoneAlt className={styles.icon} />
-                        <div>+91 9414729662</div>
-                    </div>
-
-                    <div className={styles.item}>
-                        <FaPhoneAlt className={styles.icon} />
-                        <div>+91 8824248824, +91 8955989444</div>
-                    </div>
-
-                    <div className={styles.item}>
-                        <FaWhatsapp className={styles.icon} />
-                        <div>+91 8766166166</div>
-                    </div>
-
-                    <div className={styles.item}>
-                        <FaEnvelope className={styles.icon} />
-                        <div>contact.dhanvi@gmail.com</div>
-                    </div>
-
-                    <div className={styles.item}>
-                        <FaEnvelope className={styles.icon} />
-                        <div>enquiry.dhanvi@gmail.com</div>
                     </div>
 
                     {/* Get Directions Button */}

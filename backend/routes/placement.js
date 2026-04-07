@@ -3,34 +3,44 @@ import Placement from "../models/placement.js";
 
 const router = express.Router();
 
-// Save placement form
+// SAVE DATA
 router.post("/add", async (req, res) => {
   try {
-  console.log("Incoming Data:", req.body);
+    console.log("BODY:", req.body); 
+
     const newData = new Placement(req.body);
     await newData.save();
 
-console.log("Saved Successfully ");
-    res.status(201).json({
-  success: true,
-  message: "Placement data saved successfully",
-      data: newData
-});
-  } catch (err) {
-    console.log("SAVE ERROR:",err);
-    res.status(500).json({ error: err.message,
-      err: err.errors  });
+    res.json({ message: "Form saved successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error saving data" });
   }
 });
 
-// Get all placement data
-router.get("/", async (req, res) => {
+// GET DATA
+router.get("/all", async (req, res) => {
   try {
-    const data = await Placement.find().sort({ createdAt: -1 });
+    const data = await Placement.find();
     res.json(data);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching data" +error});
+  }
+});
+
+// DELETE DATA
+router.delete("/:id", async (req, res) => {
+  try {
+    const deleted = await Placement.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Data not found" });
+    }
+
+    res.json({ message: "Deleted successfully" });
+  } catch (error) {
+    console.error("Delete Error:", error);
+    res.status(500).json({ message: "Error deleting data" });
   }
 });
 

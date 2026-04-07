@@ -14,7 +14,7 @@ const Courses = () => {
     {
       title: "Free Course",
       duration: "Duration: 1 Months",
-      desc: "",
+      desc: <br/>,
       content: [
         "Module 1 : Microsoft Excel",
         "Module 2 : Microsoft word",
@@ -22,25 +22,9 @@ const Courses = () => {
       ],
     },
     {
-      title: "Online Certificate Course",
-      duration: "Duration: 6 to 12 months",
-      desc: "",
-      content: [
-        "Module 1 : Advance Diploma in Accounting Management",
-        "Module 2 : Certificate in Tally",
-        "Module 3 : Course on Computer Concept",
-        "Module 4 : Diploma in Fire & Safety Management",
-        "Module 5 : Diploma in Solar Energy Technician",
-        "Module 6 : Diploma in Panchayati Raj & Rural Management",
-        "Module 7 : Diploma in Animal Husbandry",
-        "Module 8 : PGDCA",
-        "Module 9 : Yoga Teacher",
-      ],
-    },
-    {
       title: "Tally Prime",
       duration: "Duration: 3 Months",
-      desc: "",
+      desc: <br/>,
       content: [
         "Module 1 : Special Fundamental & Financial Accounting - Introduction",
         "Module 2 : Transactions Vouchers",
@@ -72,7 +56,7 @@ const Courses = () => {
     },
     {
       title: "Achiever's Accounting",
-      duration: "Duration: 8 Months",
+      duration: <strong>Duration: 8 Months[7 month course + 1 month job]</strong>,
       desc: <strong>FREE: Banking & Accounting in MS Excel</strong>,
       content: [
         <strong>Part A : Financial Accounting[Manual Accounting]</strong>,
@@ -96,7 +80,7 @@ const Courses = () => {
     },
     {
       title: "Advance Accounting",
-      duration: "Duration: 12 Months",
+      duration: <strong>Duration: 12 Months[9 month course + 3 month job]</strong>,
       desc: <strong>FREE: Banking,MS Word & Excel & Online Application & Forms</strong>,
       content: [
         <strong>Part A : Financial Accounting[Manual Accounting]</strong>,
@@ -124,12 +108,28 @@ const Courses = () => {
         "Module 8 : Financial Data Analyses in Tally Prime & Adjustments of Entries",
       ],
     },
+    {
+      title: "Online Certificate Course",
+      duration: "Duration: 6 to 12 months",
+      desc: <br/>,
+      content: [
+        "Module 1 : Advance Diploma in Accounting Management",
+        "Module 2 : Certificate in Tally",
+        "Module 3 : Course on Computer Concept",
+        "Module 4 : Diploma in Fire & Safety Management",
+        "Module 5 : Diploma in Solar Energy Technician",
+        "Module 6 : Diploma in Panchayati Raj & Rural Management",
+        "Module 7 : Diploma in Animal Husbandry",
+        "Module 8 : PGDCA",
+        "Module 9 : Yoga Teacher",
+      ],
+    },
   ];
 
   return (
     <div className={styles.root}>
       <Nav />
-      <h1 className={styles.heading}>Our Courses / Training</h1>
+      <h1 className={styles.heading}>Our Courses / Training [Medium Hindi / English]</h1>
 
       <div className={styles.grid}>
         {courses.map((course, index) => (

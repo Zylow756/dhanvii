@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from './Nav.module.css';
+import styles from '../Nav/Nav.module.css';
 import logo from '../../assets/images/logo.jpeg';
 import React, { useState } from "react";
 import Login from "../../pages/Login";
@@ -37,10 +37,9 @@ const AdminNav = () => {
 
         {/* Navigation Links */}
         <ul className={`${styles["nav-links"]} ${menuOpen ? styles["active"] : ""}`}>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/about"></Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/Admin">Admin Home</Link></li>
 
+                <li><Link to="/adminPlacement">Placement</Link></li>
           {/* Dropdown */}
           <li className={styles.dropdown}>
             <span onClick={() => setOpen(!open)}>Gallery ▾</span>
@@ -48,16 +47,16 @@ const AdminNav = () => {
             {open && (
               <ul className={styles["dropdown-menu"]}>
                 <li><Link to="/func-gallery">Functions</Link></li>
-                <li><Link to="/cong-gallery">Congratulations</Link></li>
                 <li><Link to="/instit-gallery">Institute</Link></li>
               </ul>
             )}
           </li>
 
-          <li><Link to="/courses">Courses</Link></li>
-          <li><Link to="/career">Career</Link></li>
+          <li><Link to="/adminReview">Review</Link></li>
+          <li><Link to="/adminPlacement">Career</Link></li>
+          <li><Link to="/career">Stories</Link></li>
 <li>
-        <span onClick={() => setShowLogin(true)}>Login</span></li>
+        <span onClick={() => setShowLogin(true)}>Logout</span></li>
         </ul>
       </div>
     </nav>

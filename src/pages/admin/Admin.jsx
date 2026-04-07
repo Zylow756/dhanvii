@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Nav from '../../components/Nav/Nav';
-import Footer from '../../components/Footer/Footer';
+import AdminNav from '../../components/AdminNav/AdminNav';
 import styles from '../../assets/css/Admin.module.css';
 
 const Admin = () => {
@@ -39,7 +38,7 @@ const Admin = () => {
 
   return (
     <div className={styles['root']}>
-      <Nav />
+      <AdminNav />
       <div style={{ padding: "30px", background: "#f5f6fa", minHeight: "100vh" }}>
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
           Admin Dashboard For Enquiries
@@ -57,74 +56,74 @@ const Admin = () => {
               📥 Export Excel
             </span>
           </div>
+          <div class="table-container">
+            {/* Table */}
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                textAlign: "center",
+              }}
+            >
+              <thead style={{ background: "#7b0000", color: "#fff" }}>
+                <tr>
+                  <th className={styles.thStyle}>ID</th>
+                  <th className={styles.thStyle}>Name</th>
+                  <th className={styles.thStyle}>Phone</th>
+                  <th className={styles.thStyle}>Qualification</th>
+                  <th className={styles.thStyle}>Actions</th>
+                </tr>
+              </thead>
 
-          {/* Table */}
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              textAlign: "center",
-            }}
-          >
-            <thead style={{ background: "#7b0000", color: "#fff" }}>
-              <tr>
-                <th className={styles.thStyle}>ID</th>
-                <th className={styles.thStyle}>Name</th>
-                <th className={styles.thStyle}>Phone</th>
-                <th className={styles.thStyle}>Qualification</th>
-                <th className={styles.thStyle}>Actions</th>
-              </tr>
-            </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
+                    <td className={styles.tdStyle}>{index + 1}</td>
 
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
-                  <td className={styles.tdStyle}>{index + 1}</td>
+                    <td className={styles.tdStyle}>
+                      {editId === item._id ? (
+                        <input
+                          value={form.name}
+                          onChange={(e) =>
+                            setForm({ ...form, name: e.target.value })
+                          }
+                        />
+                      ) : (
+                        item.name
+                      )}
+                    </td>
 
-                  <td className={styles.tdStyle}>
-                    {editId === item._id ? (
-                      <input
-                        value={form.name}
-                        onChange={(e) =>
-                          setForm({ ...form, name: e.target.value })
-                        }
-                      />
-                    ) : (
-                      item.name
-                    )}
-                  </td>
+                    <td className={styles.tdStyle}>
+                      {editId === item._id ? (
+                        <input
+                          value={form.phone}
+                          onChange={(e) =>
+                            setForm({ ...form, phone: e.target.value })
+                          }
+                        />
+                      ) : (
+                        item.phone
+                      )}
+                    </td>
 
-                  <td className={styles.tdStyle}>
-                    {editId === item._id ? (
-                      <input
-                        value={form.phone}
-                        onChange={(e) =>
-                          setForm({ ...form, phone: e.target.value })
-                        }
-                      />
-                    ) : (
-                      item.phone
-                    )}
-                  </td>
+                    <td className={styles.tdStyle}>
+                      {editId === item._id ? (
+                        <input
+                          value={form.qualification}
+                          onChange={(e) =>
+                            setForm({
+                              ...form,
+                              qualification: e.target.value,
+                            })
+                          }
+                        />
+                      ) : (
+                        item.qualification
+                      )}
+                    </td>
 
-                  <td className={styles.tdStyle}>
-                    {editId === item._id ? (
-                      <input
-                        value={form.qualification}
-                        onChange={(e) =>
-                          setForm({
-                            ...form,
-                            qualification: e.target.value,
-                          })
-                        }
-                      />
-                    ) : (
-                      item.qualification
-                    )}
-                  </td>
+                    <td className={styles.tdStyle}>
 
-                  <td className={styles.tdStyle}>
-                     
                       <>
                         <button
                           className={styles.deleteBtn}
@@ -133,16 +132,14 @@ const Admin = () => {
                           🗑 Delete
                         </button>
                       </>
-                    
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table></div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

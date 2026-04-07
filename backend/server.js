@@ -1,13 +1,14 @@
+/* global process */
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-//import dotenv from "dotenv";
+import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import placementRoutes from "./routes/placement.js";
 import enquiryRoutes from "./routes/enquiry.js";
 
 const app = express();
-//dotenv.config({ path: "./.env" });
+dotenv.config({ path: "./.env" });
 
 // Middleware
 app.use(cors());
@@ -18,13 +19,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/placement", placementRoutes);
 app.use("/api/enquiry", enquiryRoutes);
 
-//mongoose.connect(env.MONGO_URI)
-mongoose.connect("mongodb://dhanvii_db:dhanvii12345@ac-ycrnqfx-shard-00-00.vkdpko5.mongodb.net:27017,ac-ycrnqfx-shard-00-01.vkdpko5.mongodb.net:27017,ac-ycrnqfx-shard-00-02.vkdpko5.mongodb.net:27017/dhanviDB?ssl=true&replicaSet=atlas-2eskuw-shard-0&authSource=admin&retryWrites=true&w=majority")
-  .then(() => console.log("MongoDB Atlas Connected"))
+  mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("MongoDB Atlas Connected"))
   .catch(err => console.log("Error:", err));
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+  const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log("Server running on port ${PORT}");
 });
 
 /*const FormSchema = new mongoose.Schema({}, { strict: false });

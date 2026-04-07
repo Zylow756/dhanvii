@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const FormSchema = new mongoose.Schema({
+const placementSchema = new Schema({
   name: String,
   address: String,
   mobile: String,
@@ -16,8 +16,8 @@ const FormSchema = new mongoose.Schema({
       relation: String,
       name: String,
       education: String,
-      working: String,
-    },
+      working: String
+    }
   ],
 
   academic: [
@@ -26,8 +26,8 @@ const FormSchema = new mongoose.Schema({
       stream: String,
       board: String,
       year: String,
-      percentage: String,
-    },
+      percentage: String
+    }
   ],
 
   professional: [
@@ -35,25 +35,21 @@ const FormSchema = new mongoose.Schema({
       course: String,
       institute: String,
       duration: String,
-      remark: String,
-    },
+      remark: String
+    }
   ],
+
   experience: [
   {
-    company: String,
-    post: String,
-    type: String,
-    from: String,
-    to: String,
-    salary: String
+    company: { type: String, default: "" },
+    post: { type: String, default: "" },
+    type: { type: String, default: "" },
+    from: { type: String, default: "" },
+    to: { type: String, default: "" },
+    salary: { type: String, default: "" }
   }
-]
-});
+],
+}, { timestamps: true });
 
-const placementSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  qualification: String,
-}, { timestamps: true }); // 👈 MUST ADD
 
-export default mongoose.model("Placement", FormSchema,placementSchema);
+export default model("Placement", placementSchema);

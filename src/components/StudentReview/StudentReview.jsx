@@ -4,35 +4,38 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import styles from "./StudentReview.module.css";
-import studentImage from '../../assets/images/student-image.jfif';
-import { useNavigate } from "react-router-dom";
-
-const reviews = [
-  {
-    name: "Aman Sharma",
-    image: studentImage,
-    review:
-      "This coaching completely changed my life. Faculty support and doubt sessions are amazing!",
-  },
-  {
-    name: "Priya Verma",
-    image: studentImage,
-    review:
-      "Best institute in Kota! Structured learning and regular tests helped me crack my exam.",
-  },
-  {
-    name: "Rahul Meena",
-    image: studentImage,
-    review:
-      "Highly recommended! The environment here motivates you to push your limits.",
-  },
-];
+import studentImage from '../../assets/images/default.png';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const StudentReview = () => {
-  const navigate = useNavigate();
+  const [reviews, setReviews] = useState([]);
+
+
+  const fetchReviews = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/reviews");
+      setReviews(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        await fetchReviews();
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      }
+    };
+    loadData();
+  }, []);
+
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Student Success Stories</h2>
+      <h2 className={styles.heading}>What Our Students Says...</h2>
 
       <Swiper
         effect={"coverflow"}
@@ -52,15 +55,35 @@ const StudentReview = () => {
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className={styles.swiper}
       >
-        {reviews.map((item, index) => (
-          <SwiperSlide key={index} className={styles.slide}>
-            <div className={styles.card}
-              onClick={() => navigate("/Placement")}
-              style={{ cursor: "pointer" }}>
-              <img src={item.image} alt={item.name} className={styles.image} />
-              <p className={styles.review}>"{item.review}"</p>
-              <h3 className={styles.name}>{item.name}</h3>
-            </div>
+        {reviews.map((r) => (
+          <SwiperSlide key={r.id} className={styles.slide}>
+            <a href={r.path}>
+            <div className={styles.card}>
+  
+  <div className={styles.topRow}>
+    
+    {/* LEFT IMAGE */}
+    <img
+      src={`http://localhost:5000/uploads/${r.image}`}
+      alt={studentImage}
+      className={styles.image}
+    />
+
+    {/* RIGHT SIDE TEXT */}
+    <div className={styles.textBlock}>
+      <div className={styles.name}>{r.name}</div>
+      <div className={styles.qualification}>{r.qualification}</div>
+    </div>
+
+  </div>
+
+  {/* MESSAGE */}
+  <p className={styles.review}>
+    " {r.message} "
+  </p>
+
+</div>
+</a>
           </SwiperSlide>
         ))}
       </Swiper>

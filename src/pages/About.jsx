@@ -11,7 +11,7 @@ const About = () => {
       <section className={styles.section}>
         <h1>About Us | हमारे बारे में</h1>
 
-        <h2>Legacy of Trust, Excellence in Finance</h2>
+        <h3>Legacy of Trust, Excellence in Finance</h3>
 
         <p>
           Established in <strong>2017</strong>, <strong>Dhanvii Accounting System</strong> is a  <strong>professional accounting institute</strong> committed to delivering <strong>high-quality finance and accounting education.</strong>With a <strong>legacy in professional accounting since 1996,</strong> with expertise in <strong>practical, industry-oriented training.</strong>

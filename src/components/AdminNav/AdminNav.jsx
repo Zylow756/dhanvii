@@ -39,7 +39,7 @@ const AdminNav = () => {
         <ul className={`${styles["nav-links"]} ${menuOpen ? styles["active"] : ""}`}>
           <li><Link to="/Admin">Admin Home</Link></li>
 
-                <li><Link to="/adminPlacement">Placement</Link></li>
+                <li><Link to="/career">Placement</Link></li>
           {/* Dropdown */}
           <li className={styles.dropdown}>
             <span onClick={() => setOpen(!open)}>Gallery ▾</span>

@@ -59,15 +59,18 @@ const styles = {
     },
 
     th: {
-        textAlign: "left",
+        textAlign: "center",
         padding: "12px",
         backgroundColor: "#f1f1f1",
         borderBottom: "2px solid #ddd",
+        borderLeft: "2px solid #ddd",
     },
 
     td: {
         padding: "12px",
-        borderBottom: "1px solid #ddd",
+        borderBottom: "3px solid #ddd",
+        borderLeft: "2px solid #ddd",
+        textAlign: "center",
     },
 
     image: {
@@ -139,7 +142,7 @@ const AdminReview = () => {
         formData.append("name", form.name);
         formData.append("message", form.message);
         formData.append("path", form.path);
-        formData.append("qualification",form.qualification);
+        formData.append("qualification", form.qualification);
 
         // only add image if selected
         if (form.image) {
@@ -160,7 +163,7 @@ const AdminReview = () => {
                 );
             }
 
-            setForm({ name: "", message: "",path: "",qualification: "", image: null });
+            setForm({ name: "", message: "", path: "", qualification: "", image: null });
             fetchReviews();
 
         } catch (err) {
@@ -190,8 +193,7 @@ const AdminReview = () => {
 
     return (
         <div style={styles.container}>
-
-      <AdminNav />
+                        <AdminNav />
             <h2 style={styles.title}>Admin Review Panel</h2>
 
             {/* FORM CARD */}
@@ -227,7 +229,7 @@ const AdminReview = () => {
                         }
                         style={styles.path}
                     />
-                    
+
                     <input
                         type="text"
                         placeholder="Student Qualifications"
@@ -268,7 +270,7 @@ const AdminReview = () => {
                     <tbody>
                         {reviews.map((r) => (
                             <tr key={r._id}>
-                                <td>
+                                <td style={styles.td}>
                                     <img
                                         src={`http://localhost:5000/uploads/${r.image}`}
                                         alt=""
@@ -276,9 +278,9 @@ const AdminReview = () => {
                                     />
                                 </td>
 
-                                <td>{r.name}</td>
-                                <td>{r.message}</td>
-                                <td>{r.qualification}</td>
+                                <td style={styles.td}>{r.name}</td>
+                                <td style={styles.td}>{r.message}</td>
+                                <td style={styles.td}>{r.qualification}</td>
                                 <td style={styles.td}>
                                     <button
                                         onClick={() => handleEdit(r)}

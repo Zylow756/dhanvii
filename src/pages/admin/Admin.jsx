@@ -38,10 +38,10 @@ const Admin = () => {
 
   return (
     <div className={styles['root']}>
-      <AdminNav />
+            <AdminNav />
       <div style={{ padding: "30px", background: "#f5f6fa", minHeight: "100vh" }}>
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-          Admin Dashboard For Enquiries
+          Admin Enquiry Dashboard
         </h2>
 
         {/* Card */}

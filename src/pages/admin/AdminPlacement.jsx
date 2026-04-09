@@ -32,138 +32,138 @@ export default function AdminPlacement() {
   }, []);
 
   const handleDelete = async (id) => {
-  if (!window.confirm("Are you sure?")) return;
+    if (!window.confirm("Are you sure?")) return;
 
-  try {
-    const res = await fetch(`http://localhost:5000/api/placement/${id}`, {
-      method: "DELETE",
-    });
+    try {
+      const res = await fetch(`http://localhost:5000/api/placement/${id}`, {
+        method: "DELETE",
+      });
 
-    const data = await res.json();
-    console.log(data);
+      const data = await res.json();
+      console.log(data);
 
-    fetchData(); // refresh table
-  } catch (err) {
-    console.error("Delete failed:", err);
-  }
-};
+      fetchData(); // refresh table
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  };
 
-const exportToExcel = () => {
-  const workbook = XLSX.utils.book_new();
-  // Format data for Excel
-  const mainData  = data.map(item => ({
-    Name: item.name,
-    Mobile: item.mobile,
-    Address: item.address,
-    DOB:item.dob,
-    Gender: item.gender,
-    Language: item.language,
-    JobTitle: item.jobTitle,
-    ExpectedSalary: item.expectedSalary,
-    JobLocation: item.jobLocation
-  }));
+  const exportToExcel = () => {
+    const workbook = XLSX.utils.book_new();
+    // Format data for Excel
+    const mainData = data.map(item => ({
+      Name: item.name,
+      Mobile: item.mobile,
+      Address: item.address,
+      DOB: item.dob,
+      Gender: item.gender,
+      Language: item.language,
+      JobTitle: item.jobTitle,
+      ExpectedSalary: item.expectedSalary,
+      JobLocation: item.jobLocation
+    }));
 
-  // Convert to worksheet
-  const mainSheet = XLSX.utils.json_to_sheet(mainData );
-  XLSX.utils.book_append_sheet(workbook, mainSheet, "Basic Info");
+    // Convert to worksheet
+    const mainSheet = XLSX.utils.json_to_sheet(mainData);
+    XLSX.utils.book_append_sheet(workbook, mainSheet, "Basic Info");
 
-  // Create workbook
-  XLSX.utils.book_append_sheet(workbook, mainSheet, "Placements");
+    // Create workbook
+    XLSX.utils.book_append_sheet(workbook, mainSheet, "Placements");
 
- // ✅ FAMILY SHEET
-  const familyData = [];
-  data.forEach(item => {
-    item.family?.forEach(f => {
-      familyData.push({
-        Name: item.name,
-        Relation: f.relation,
-        FamilyName: f.name,
-        Education: f.education,
-        Working: f.working
+    // ✅ FAMILY SHEET
+    const familyData = [];
+    data.forEach(item => {
+      item.family?.forEach(f => {
+        familyData.push({
+          Name: item.name,
+          Relation: f.relation,
+          FamilyName: f.name,
+          Education: f.education,
+          Working: f.working
+        });
       });
     });
-  });
 
-  const familySheet = XLSX.utils.json_to_sheet(familyData);
-  XLSX.utils.book_append_sheet(workbook, familySheet, "Family");
+    const familySheet = XLSX.utils.json_to_sheet(familyData);
+    XLSX.utils.book_append_sheet(workbook, familySheet, "Family");
 
-  // ✅ ACADEMIC SHEET
-  const academicData = [];
-  data.forEach(item => {
-    item.academic?.forEach(a => {
-      academicData.push({
-        Name: item.name,
-        Qualification: a.qualification,
-        Stream: a.stream,
-        Board: a.board,
-        Year: a.year,
-        Percentage: a.percentage
+    // ✅ ACADEMIC SHEET
+    const academicData = [];
+    data.forEach(item => {
+      item.academic?.forEach(a => {
+        academicData.push({
+          Name: item.name,
+          Qualification: a.qualification,
+          Stream: a.stream,
+          Board: a.board,
+          Year: a.year,
+          Percentage: a.percentage
+        });
       });
     });
-  });
 
-  const academicSheet = XLSX.utils.json_to_sheet(academicData);
-  XLSX.utils.book_append_sheet(workbook, academicSheet, "Academic");
+    const academicSheet = XLSX.utils.json_to_sheet(academicData);
+    XLSX.utils.book_append_sheet(workbook, academicSheet, "Academic");
 
-  // ✅ PROFESSIONAL SHEET
-  const professionalData = [];
-  data.forEach(item => {
-    item.professional?.forEach(p => {
-      professionalData.push({
-        Name: item.name,
-        Course: p.course,
-        Institute: p.institute,
-        Duration: p.duration,
-        Remark: p.remark
+    // ✅ PROFESSIONAL SHEET
+    const professionalData = [];
+    data.forEach(item => {
+      item.professional?.forEach(p => {
+        professionalData.push({
+          Name: item.name,
+          Course: p.course,
+          Institute: p.institute,
+          Duration: p.duration,
+          Remark: p.remark
+        });
       });
     });
-  });
 
-  const professionalSheet = XLSX.utils.json_to_sheet(professionalData);
-  XLSX.utils.book_append_sheet(workbook, professionalSheet, "Professional");
+    const professionalSheet = XLSX.utils.json_to_sheet(professionalData);
+    XLSX.utils.book_append_sheet(workbook, professionalSheet, "Professional");
 
-  // ✅ EXPERIENCE SHEET
-  const experienceData = [];
-  data.forEach(item => {
-    item.experience?.forEach(e => {
-      experienceData.push({
-        Name: item.name,
-        Company: e.company,
-        Post: e.post,
-        Type: e.type,
-        From: e.from,
-        To: e.to,
-        Salary: e.salary
+    // ✅ EXPERIENCE SHEET
+    const experienceData = [];
+    data.forEach(item => {
+      item.experience?.forEach(e => {
+        experienceData.push({
+          Name: item.name,
+          Company: e.company,
+          Post: e.post,
+          Type: e.type,
+          From: e.from,
+          To: e.to,
+          Salary: e.salary
+        });
       });
     });
-  });
 
-  const experienceSheet = XLSX.utils.json_to_sheet(experienceData);
-  XLSX.utils.book_append_sheet(workbook, experienceSheet, "Experience");
+    const experienceSheet = XLSX.utils.json_to_sheet(experienceData);
+    XLSX.utils.book_append_sheet(workbook, experienceSheet, "Experience");
 
-  // Generate Excel file
-  const excelBuffer = XLSX.write(workbook, {
-    bookType: "xlsx",
-    type: "array"
-  });
+    // Generate Excel file
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array"
+    });
 
-  const fileData = new Blob([excelBuffer], {
-    type: "application/octet-stream"
-  });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream"
+    });
 
-  saveAs(fileData, "placement_data.xlsx");
-};
+    saveAs(fileData, "placement_data.xlsx");
+  };
 
   if (loading) return <h2>Loading...</h2>;
 
   return (
     <div className={styles['root']}>
-      <AdminNav />
+            <AdminNav />
       <div style={{ padding: "20px" }}>
-        <h1>Admin Dashboard</h1>
-<span className={styles.exportBtn} onClick={exportToExcel}>
- 📥  Export to Excel
-</span>
+        <h1>Admin Career Dashboard</h1>
+        <span className={styles.exportBtn} onClick={exportToExcel}>
+          📥  Export to Excel
+        </span>
         {/* TABLE */}
         <table border="1" cellPadding="10" width="100%" marginTop="10">
           <thead style={{ background: "#eee" }}>
@@ -185,7 +185,7 @@ const exportToExcel = () => {
                 <td className={styles.thStyle}>{item.expectedSalary}</td>
 
                 <td>
-                  <button  onClick={() => setSelected(item)}>View</button>
+                  <button onClick={() => setSelected(item)}>View</button>
                   <button onClick={() => handleDelete(item._id)}>Delete</button>
                 </td>
               </tr>
@@ -233,6 +233,7 @@ const exportToExcel = () => {
               </div>
             </div></div>
         )}
-      </div></div>
+      </div>
+    </div>
   );
 }

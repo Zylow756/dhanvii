@@ -63,7 +63,7 @@ const Login = ({ onClose }) => {
           alert(data.message);
         } else {
           alert("Login successful...");// optional: store login state
-          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("token", data.token);
 
           // redirect to home/dashboard
           navigate("/admin"); 

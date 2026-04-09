@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from '../Nav/Nav.module.css';
 import logo from '../../assets/images/logo.jpeg';
 import React, { useState } from "react";
-import Login from "../../pages/Login";
+import LogoutPopup from "../logoutPopup/LogoutPopup";
 
 const AdminNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const navigate = useNavigate();
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/");
+};
 
   return (
   <>
@@ -54,14 +61,18 @@ const AdminNav = () => {
 
           <li><Link to="/adminReview">Review</Link></li>
           <li><Link to="/adminPlacement">Career</Link></li>
-          <li><Link to="/career">Stories</Link></li>
 <li>
-        <span onClick={() => setShowLogin(true)}>Logout</span></li>
+        <span onClick={() => setShowLogoutPopup(true)}>Logout</span></li>
         </ul>
       </div>
     </nav>
 
-    {showLogin && <Login onClose={() => setShowLogin(false)} />}
+    {showLogoutPopup && (
+  <LogoutPopup
+    onConfirm={handleLogout}
+    onCancel={() => setShowLogoutPopup(false)}
+  />
+)}
   </>
 );
 };

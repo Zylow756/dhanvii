@@ -4,7 +4,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import styles from "./StudentReview.module.css";
-import studentImage from '../../assets/images/default.png';
+import studentImage from '../../assets/images/nophoto.png';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -57,33 +57,42 @@ const StudentReview = () => {
       >
         {reviews.map((r) => (
           <SwiperSlide key={r.id} className={styles.slide}>
+            
             <a href={r.path}>
-            <div className={styles.card}>
-  
-  <div className={styles.topRow}>
-    
-    {/* LEFT IMAGE */}
-    <img
-      src={`http://localhost:5000/uploads/${r.image}`}
-      alt={studentImage}
-      className={styles.image}
-    />
+              <div className={styles.card}>
 
-    {/* RIGHT SIDE TEXT */}
-    <div className={styles.textBlock}>
-      <div className={styles.name}>{r.name}</div>
-      <div className={styles.qualification}>{r.qualification}</div>
-    </div>
+                <div className={styles.topRow}>
 
-  </div>
+                  {/* LEFT IMAGE */}
+                  <img
+                    src={
+                      r.image
+                        ? `http://localhost:5000/uploads/${r.image}`
+                        : studentImage
+                    }
+                    alt={r.name}
+                    className={styles.image}
+                    onError={(e) => {
+                      e.target.onerror = null; // prevent infinite loop
+                      e.target.src = studentImage;
+                    }}
+                  />
 
-  {/* MESSAGE */}
-  <p className={styles.review}>
-    " {r.message} "
-  </p>
+                  {/* RIGHT SIDE TEXT */}
+                  <div className={styles.textBlock}>
+                    <div className={styles.name}>{r.name}</div>
+                    <div className={styles.qualification}>{r.qualification}</div>
+                  </div>
 
-</div>
-</a>
+                </div>
+
+                {/* MESSAGE */}
+                <p className={styles.review}>
+                  " {r.message} "
+                </p>
+
+              </div>
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>

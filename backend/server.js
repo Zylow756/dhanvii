@@ -8,6 +8,7 @@ import authRoutes from "./routes/auth.js";
 import placementRoutes from "./routes/placement.js";
 import enquiryRoutes from "./routes/enquiry.js";
 import reviewRoutes from "./routes/review.js";
+import placementGalleryRoutes from "./routes/placementGallery.js"
 
 const app = express();
 dotenv.config();
@@ -20,6 +21,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/placement", placementRoutes);
 app.use("/api/enquiry", enquiryRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/placementGallery", placementGalleryRoutes)
 
 //  STATIC
 app.use("/uploads", express.static("uploads"));

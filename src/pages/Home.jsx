@@ -37,8 +37,8 @@ const Home = () => {
 
       alert("Message sent successfully");
 
-  // Redirect to courses
-  window.location.href = "/courses";
+      // Redirect to courses
+      window.location.href = "/courses";
     } catch (err) {
       console.error("ERROR:", err.message);
       alert(err.message);
@@ -49,10 +49,20 @@ const Home = () => {
     <div className={styles['root']}>
       <Nav />
       <header className={styles['box-contain']}>
-      <h1>Best Accounting Institute in Kota</h1>
+        <h1>Best Accounting Institute in Kota</h1>
       </header>
       <RandomAd />
       <div className={styles['enquiry-form']}>
+        <div className={styles["premium-card"]}>
+          <h2>Who Should Join?</h2>
+          <ul>
+            <li>Commerse & Non-Commerse Students</li>
+            <li>12 Pass,B.A,M.A,B.Com,M.Com,B.Sc,<br />B.tech</li>
+            <li>Job Seekers in Accounting & Finance</li>
+            <li>Business Owners managing their accounts</li>
+            <li>Anyone wanting to master Tally & GST</li>
+          </ul>
+        </div>
         <div className={styles['contact-form-container']}>
           <h2>Enquiry Form For Demo Classes</h2>
           <form id="contactForm" onSubmit={handleSubmit}>
@@ -87,6 +97,20 @@ const Home = () => {
               Send Message
             </button>
           </form>
+        </div>
+        <div className={styles["premium-card"]}>
+          <h2>Job Opportunities</h2>
+          <ul>
+            <li>Accounting Clerks</li>
+            <li>Book Keeping</li>
+            <li>Bank Worker</li>
+            <li>Payroll Clerks</li>
+            <li>Financial Dealers</li>
+            <li>Tax Manager</li>
+            <li>Godown Operation</li>
+            <li>Internal Auditors</li>
+            <li>Management Accounting</li>
+          </ul>
         </div>
       </div>
       <StudentReview />

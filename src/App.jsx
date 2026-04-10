@@ -4,7 +4,7 @@ import Contact from "./pages/Contact";
 import Training from "./pages/Courses";
 import Career from "./pages/Career";
 import Services from "./pages/Services";
-import Placement from "./pages/Placement";
+import StudentPlacement from "./pages/StudentPlacement";
 // Gallery Pages
 import FuncGallery from "./pages/gallery/FuncGallery";
 import InstitGallery from "./pages/gallery/InstitGallery";
@@ -13,7 +13,8 @@ import { Routes, Route } from 'react-router-dom';
 import Admin from "./pages/admin/Admin";
 import AdminPlacement from "./pages/admin/AdminPlacement";
 import AdminReview from "./pages/admin/AdminReview";
-import ProtectedRoute from "./components/logoutPopup/ProtectedRoute"
+import ProtectedRoute from "./components/logoutPopup/ProtectedRoute";
+import PlacementGallery from "./pages/admin/PlacementGallery";
 
 function App() {
   return (
@@ -24,15 +25,11 @@ function App() {
         <Route path="/courses" element={<Training />} />
         <Route path="/career" element={<Career />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/placement" element={<Placement />} />
+        <Route path="/studentPlacement" element={<StudentPlacement />} />
 
         {/*  Gallery Routes */}
         <Route path="/func-gallery" element={<FuncGallery />} />
         <Route path="/instit-gallery" element={<InstitGallery />} />
-
-        {/*<Route path="/adminPlacement" element={<AdminPlacement />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/adminReview" element={<AdminReview />} />*/}
         <Route
           path="/admin"
           element={
@@ -56,6 +53,15 @@ function App() {
           element={
             <ProtectedRoute>
               <AdminReview />
+            </ProtectedRoute>
+          }
+        />
+        
+        <Route
+          path="/placementGallery"
+          element={
+            <ProtectedRoute>
+              <PlacementGallery />
             </ProtectedRoute>
           }
         />

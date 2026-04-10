@@ -45,7 +45,7 @@ const Admin = () => {
         </h2>
 
         {/* Card */}
-        <div className="styles['card']">
+        <div className={styles['card']}>
           {/* Top Bar */}
           <div className={styles['enquiry-contain']}>
             <span
@@ -56,7 +56,7 @@ const Admin = () => {
               📥 Export Excel
             </span>
           </div>
-          <div class="table-container">
+          <div className={styles["table-container"]}>
             {/* Table */}
             <table
               style={{

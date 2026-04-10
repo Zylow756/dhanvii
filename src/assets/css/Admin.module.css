@@ -46,9 +46,7 @@
 
  .table-container {
      max-height: 300px;
-     /* set height as needed */
      overflow-y: auto;
-     /* vertical scroll */
      border: 1px solid #ddd;
  }
 

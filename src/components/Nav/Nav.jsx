@@ -42,7 +42,7 @@ const Nav = () => {
             <li><Link to="/contact">Contact Us</Link></li>
             <li><Link to="/services">Services</Link></li>
             <li><Link to="/courses">Courses</Link></li>
-            <li><Link to="/placement">Placement</Link></li>
+            <li><Link to="/studentPlacement">Placement</Link></li>
 
             {/* Dropdown */}
             <li className={styles.dropdown}>

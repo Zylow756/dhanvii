@@ -27,7 +27,6 @@ const RandomAd = () => {
   return (
     <div className={styles.adBox}>
       <img src={ad.image} alt={ad.title} />
-      <h3>{ad.title}</h3>
     </div>
   );
 };

@@ -165,7 +165,7 @@ export default function AdminPlacement() {
           📥  Export to Excel
         </span>
         {/* TABLE */}
-        <table border="1" cellPadding="10" width="100%" marginTop="10">
+        <table style= {{ border:"1px", cellPadding:"10px", width:"100%", marginTop:"10px"}}>
           <thead style={{ background: "#eee" }}>
             <tr>
               <th>Name</th>

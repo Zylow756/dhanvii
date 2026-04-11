@@ -56,11 +56,12 @@ const Home = () => {
         <div className={styles["premium-card"]}>
           <h2>Who Should Join?</h2>
           <ul>
-            <li>Commerse & Non-Commerse Students</li>
-            <li>12 Pass,B.A,M.A,B.Com,M.Com,B.Sc,<br />B.tech</li>
+            <li>12th Commerse & Non-Commerse Students</li>
+            <li>Graduation: Arts, Commerse,Science</li>
             <li>Job Seekers in Accounting & Finance</li>
             <li>Business Owners managing their accounts</li>
             <li>Anyone wanting to master Tally & GST</li>
+            <li>Technical: ITI, B.Tech, others</li>
           </ul>
         </div>
         <div className={styles['contact-form-container']}>

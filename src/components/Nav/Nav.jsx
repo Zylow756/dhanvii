@@ -8,6 +8,7 @@ const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
 
   return (
     <>
@@ -37,16 +38,24 @@ const Nav = () => {
 
           {/* Navigation Links */}
           <ul className={`${styles["nav-links"]} ${menuOpen ? styles["active"] : ""}`}>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/courses">Courses</Link></li>
-            <li><Link to="/studentPlacement">Placement</Link></li>
+            <li className={styles.navItem}><Link to="/">Home</Link></li>
+            <li className={styles.navItem}><Link to="/about">About Us</Link></li>
+            <li className={styles.navItem}><Link to="/contact">Contact Us</Link></li>
+            <li className={styles.navItem}><Link to="/services">Services</Link></li>
+            <li className={styles.navItem}><Link to="/courses">Courses</Link></li>
+            <li className={styles.navItem}><Link to="/studentPlacement">Placement</Link></li>
 
             {/* Dropdown */}
-            <li className={styles.dropdown}>
-              <span onClick={() => setOpen(!open)}>Gallery ▾</span>
+            <li className={styles.dropdown}
+  onMouseEnter={() => {
+    if (timeoutId) clearTimeout(timeoutId);
+    setOpen(true);
+  }}
+  onMouseLeave={() => {
+    const id = setTimeout(() => setOpen(false), 200);
+    setTimeoutId(id);
+  }}>
+              <span>Gallery ▾</span>
 
               {open && (
                 <ul className={styles["dropdown-menu"]}>
@@ -56,8 +65,8 @@ const Nav = () => {
               )}
             </li>
 
-            <li><Link to="/career">Career</Link></li>
-            <li>
+            <li className={styles.navItem}><Link to="/career">Career</Link></li>
+            <li className={styles.navItem}>
               <span onClick={() => setShowLogin(true)}>Login</span></li>
           </ul>
         </div>

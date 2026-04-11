@@ -15,6 +15,7 @@ import AdminPlacement from "./pages/admin/AdminPlacement";
 import AdminReview from "./pages/admin/AdminReview";
 import ProtectedRoute from "./components/logoutPopup/ProtectedRoute";
 import PlacementGallery from "./pages/admin/PlacementGallery";
+import AdminGallery from "./pages/admin/AdminGallery";
 
 function App() {
   return (
@@ -30,6 +31,14 @@ function App() {
         {/*  Gallery Routes */}
         <Route path="/func-gallery" element={<FuncGallery />} />
         <Route path="/instit-gallery" element={<InstitGallery />} />
+        <Route
+          path="/adminFuncGallery"
+          element={
+            <ProtectedRoute>
+              <AdminGallery />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/admin"
           element={

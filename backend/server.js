@@ -3,12 +3,13 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 import authRoutes from "./routes/auth.js";
 import placementRoutes from "./routes/placement.js";
 import enquiryRoutes from "./routes/enquiry.js";
 import reviewRoutes from "./routes/review.js";
-import placementGalleryRoutes from "./routes/placementGallery.js"
+import placementGalleryRoutes from "./routes/placementGallery.js";
+import galleryRoutes from "./routes/gallery.js";
+
 
 const app = express();
 dotenv.config();
@@ -21,7 +22,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/placement", placementRoutes);
 app.use("/api/enquiry", enquiryRoutes);
 app.use("/api/reviews", reviewRoutes);
-app.use("/api/placementGallery", placementGalleryRoutes)
+app.use("/api/placementGallery", placementGalleryRoutes);
+app.use("/api/gallery", galleryRoutes);
 
 //  STATIC
 app.use("/uploads", express.static("uploads"));

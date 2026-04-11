@@ -7,7 +7,6 @@ import LogoutPopup from "../logoutPopup/LogoutPopup";
 
 const AdminNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [open, setOpen] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const navigate = useNavigate();
 
@@ -48,16 +47,7 @@ const handleLogout = () => {
 
                 <li><Link to="/placementGallery">Placement Gallery</Link></li>
           {/* Dropdown */}
-          <li className={styles.dropdown}>
-            <span onClick={() => setOpen(!open)}>Gallery ▾</span>
-
-            {open && (
-              <ul className={styles["dropdown-menu"]}>
-                <li><Link to="/func-gallery">Functions</Link></li>
-                <li><Link to="/instit-gallery">Institute</Link></li>
-              </ul>
-            )}
-          </li>
+          <li><Link to= "/adminFuncGallery">Gallery</Link></li>
 
           <li><Link to="/adminReview">Review</Link></li>
           <li><Link to="/adminPlacement">Career</Link></li>

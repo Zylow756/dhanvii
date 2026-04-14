@@ -1,0 +1,58 @@
+.fabContainer {
+  position: fixed;
+  top: 130px;
+  right: 30px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 12px;
+  z-index: 999;
+}
+
+/* MAIN BUTTON */
+.fabMain {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff7a18, #ff3d00);
+  color: white;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ITEMS */
+.fabItem {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+/* SHOW WHEN OPEN */
+.open .fabItem {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* COLORS */
+.whatsapp { background: #25d366; }
+.facebook { background: #1877f2; }
+.telegram { background: #0088cc; }
+.twitter { background: #1da1f2; }
+.linkedin { background: #0077b5; }
+.link { background: #333; border: none; }
+.native { background: #ff5722; }
+
+/* HOVER */
+.fabItem:hover {
+  transform: scale(1.1);
+}

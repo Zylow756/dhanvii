@@ -1,49 +1,73 @@
-.footer-top-area {
-    background-color: #4e080352;
-    padding: 10px;
-    text-align: center;
-    color: white;
-    display: flex;
-}
-
 .footer-area {
     background-color: #4c0803;
 }
 
 .footer-bottom-area {
-    padding: 10px;
-    display: flex;
-    margin-left: 70px;
+  display: flex;
+  justify-content: space-between; /* 🔥 pushes text left & icons right */
+  align-items: center;
+  padding: 0 20px;
 }
 
 .footer-bottom-area p {
     color: white;
 }
 
-.footer-services {
-    margin-top: 0%;
-    color: black;
-  list-style: none;
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
 
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 6px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+/* Brand Colors */
+/*.social-icons a:nth-child(1) { background: #1877f2; } /* Facebook */
+/*.social-icons a:nth-child(2) { background: #0077b5; } /* LinkedIn */
+/*.social-icons a:nth-child(3) { background: #e4405f; } /* Instagram */
+/*.social-icons a:nth-child(4) { background: #1da1f2; } /* Twitter */
+/*.social-icons a:nth-child(5) { background: #ff0000; } /* YouTube */
+
+.footer-social-media a:nth-child(1) { background: #1877f2; color: white; } /* FB */
+.footer-social-media a:nth-child(2) { background: #0077b5; color: white; } /* LinkedIn */
+.footer-social-media a:nth-child(3) { background: #e4405f; color: white; } /* Instagram */
+.footer-social-media a:nth-child(4) { background: #1da1f2; color: white; } /* Twitter */
+.footer-social-media a:nth-child(5) { background: #ff0000; color: white; } /* YouTube */
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
 }
 
 .footer-social-media {
-    display: flex;
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+
+}
+
+.footer-social-media a {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-area {
+    flex-direction: column;
     gap: 10px;
-    margin: 10px auto;
-}
-
-.footer-widget-1 {
-    flex: 0 0 50%;
-}
-
-.footer-widget-2 {
-    flex: 0 0 50%;
-    display: inline-block;
-}
-
-.footer-widget-2 h3 {
-    padding-left: 10px;
-    margin-top: 20px;
-    margin-bottom: 0%;
+    text-align: center;
+  }
 }

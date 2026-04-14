@@ -111,24 +111,6 @@ const styles = {
   marginTop: "20px",
   gap: "10px",
 }
-
-/*paginationButton: {
-  padding: "8px 14px",
-  border: "none",
-  background: "#eee",
-  cursor: "pointer",
-  borderRadius: "5px",
-}
-
-paginationButton hover: {
-  background: "#b31212",
-  color: "white",
-}
-
-active: {
-  background: "#b31212",
-  color: "white",
-}*/
 };
 
 const AdminReview = () => {

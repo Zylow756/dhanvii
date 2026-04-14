@@ -27,7 +27,7 @@ const Contact = () => {
                     <div className={styles.item}>
                         <FaPhoneAlt className={styles.icon} />
                         <div><strong>Call Us At<br /></strong>
-                        +91 9414729662 [Faculty]<br /> +91 8824248824 [Counselor]<br/> +91 8955989444 [Placement]<br/>+91 8766166166 [WhatsApp]</div>
+                        +91 9414729662 [Grievance Call-Sanjay Nagar]<br /> +91 8824248824 [Counselor]<br/> +91 8955989444 [Placement]<br/>+91 8766166166 [WhatsApp]</div>
                     </div>
 
                     <div className={styles.item}>

@@ -17,6 +17,7 @@
     border-radius: 6px;
     border: 1px solid #ccc;
     min-height: 80px;
+  white-space: pre-line;
   }
 
   .p {

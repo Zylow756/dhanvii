@@ -75,7 +75,7 @@ const styles = {
 
     image: {
         width: "50px",
-        height: "50px",
+        minHeight: "50px",
         borderRadius: "50%",
         objectFit: "cover",
     },

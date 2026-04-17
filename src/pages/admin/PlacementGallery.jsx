@@ -17,16 +17,16 @@ const PlacementGallery = () => {
   const [editId, setEditId] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
   const [bgPreview, setBgPreview] = useState(null);
-      const [currentPage, setCurrentPage] = useState(1);
-      const itemsPerPage = 10;
-  
-      const totalPages = Math.ceil(students.length / itemsPerPage);
-  
-  
-      const indexOfLastItem = currentPage * itemsPerPage;
-      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  
-      const currentData = students.slice(indexOfFirstItem, indexOfLastItem);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const totalPages = Math.ceil(students.length / itemsPerPage);
+
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentData = students.slice(indexOfFirstItem, indexOfLastItem);
 
   const data = new FormData();
 
@@ -132,6 +132,8 @@ const PlacementGallery = () => {
     fetchData();
   };
 
+  
+
   return (
     <div>
       <AdminNav />
@@ -143,7 +145,7 @@ const PlacementGallery = () => {
         <form onSubmit={handleSubmit}>
           <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" className={styles.input} />
           <input name="qualification" value={formData.qualification} onChange={handleChange} placeholder="Qualification" className={styles.input} />
-          <textarea name="company" value={formData.company} onChange={handleChange} placeholder="Company name with designation" className={styles.textarea} maxLength={50}/>
+          <textarea name="company" value={formData.company} onChange={handleChange} placeholder="Company name with designation" className={styles.textarea} maxLength={50} />
           <p className={styles.p}>{formData.company.length}/50</p>
           <input name="salary" value={formData.salary} onChange={handleChange} placeholder="Salary per year" className={styles.input} />
           <label>Student Photo
@@ -179,8 +181,8 @@ const PlacementGallery = () => {
 
           <tbody>
             {currentData.map((item, index) => (
-                            <tr key={item._id}>
-                                <td>{indexOfFirstItem + index + 1}</td>
+              <tr key={item._id}>
+                <td>{indexOfFirstItem + index + 1}</td>
                 <td className={styles.tdStyle}>{item.name}</td>
                 <td className={styles.tdStyle}>{item.qualification}</td>
                 <td className={styles.tdStyle}>{item.company}</td>
@@ -194,31 +196,31 @@ const PlacementGallery = () => {
           </tbody>
         </table>
       </div>
-            <div className={styles.pagination}>
-                <button
-                    onClick={() => setCurrentPage(prev => prev - 1)}
-                    disabled={currentPage === 1}
-                >
-                    Prev
-                </button>
+      <div className={styles.pagination}>
+        <button
+          onClick={() => setCurrentPage(prev => prev - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
 
-                {[...Array(totalPages)].map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={currentPage === i + 1 ? styles.active : {}}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
+        {[...Array(totalPages)].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i + 1)}
+            className={currentPage === i + 1 ? styles.active : {}}
+          >
+            {i + 1}
+          </button>
+        ))}
 
-                <button
-                    onClick={() => setCurrentPage(prev => prev + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
-                </button>
-            </div>
+        <button
+          onClick={() => setCurrentPage(prev => prev + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

@@ -40,13 +40,40 @@ const CertiGallery = () => {
     );
   };
 
+  const getYear = (desc) => {
+  const match = desc?.match(/\d{4}/);
+  return match ? parseInt(match[0]) : 0;
+};
+
+const getName = (desc) => {
+  return desc
+    ? desc.replace(/\d{4}/, "").replace("-", "").trim()
+    : "";
+};
+
+const sortedImages = [...images].sort((a, b) => {
+  const yearA = getYear(a.description);
+  const yearB = getYear(b.description);
+
+  // 1. Year DESC (2025 → 2000)
+  if (yearA !== yearB) {
+    return yearB - yearA;
+  }
+
+  // 2. Name ASC (A → Z)
+  const nameA = getName(a.description);
+  const nameB = getName(b.description);
+
+  return nameA.localeCompare(nameB);
+});
+
   return (
     <div className={styles.root}>
       <Nav />
 
       <div className={styles.galleryContainer}>
         <div className={styles.grid}>
-          {images.map((img, index) => (
+          {sortedImages.map((img, index) => (
             <div
               key={img._id}
               className={styles.card}

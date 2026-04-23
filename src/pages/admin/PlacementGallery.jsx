@@ -140,7 +140,7 @@ const PlacementGallery = () => {
           </label>
 
           {/*  IMAGE PREVIEW */}
-          {bgPreview && <img src={bgPreview} width="100" />}
+          {bgPreview && <img src={bgPreview} width="100"  loading="lazy"/>}
 
           <button type="submit" className={styles.button}>{editId ? "Update" : "Add"}</button>
         </form>

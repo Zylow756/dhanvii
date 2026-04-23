@@ -29,7 +29,7 @@ const WelcomeAd = () => {
   <div className={styles.adBox}>
     {/* RIGHT - Random Ad */}
     <div className={styles.ad}>
-      <img src={ad.image} alt={ad.title} />
+      <img src={ad.image} alt={ad.title}  loading="lazy"/>
     </div>
 
   </div>

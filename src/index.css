@@ -107,3 +107,11 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+img {
+  width: 100%;
+  max-width: 1920px; /* 1080p width */
+  height: auto;
+  aspect-ratio: 16 / 9; /* Forces the 1080p shape */
+  object-fit: cover; /* Prevents stretching by cropping edges */
+}

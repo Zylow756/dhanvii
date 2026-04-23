@@ -3,6 +3,7 @@ import multer from "multer";
 import Gallery from "../models/Gallery.js";
 import fs from "fs";
 import sharp from "sharp";
+import path from "path";
 
 const router = express.Router();
 
@@ -12,19 +13,30 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    const uniqueName = Date.now() + "-" + file.originalname;
+    cb(null, uniqueName);
   },
 });
 
 const upload = multer({ storage });
 
 
+// COMMON IMAGE PROCESS FUNCTION
+const processImage = async (inputPath, outputPath) => {
+  await sharp(inputPath)
+    .rotate()
+    .resize(1920, 1080, {
+      fit: "inside", // no crop, maintain ratio
+      withoutEnlargement: true, // don't upscale small images
+    })
+    .webp({ quality: 85 }) // better than jpeg
+    .toFile(outputPath);
+};
+
+
 // UPLOAD IMAGE
 router.post("/upload", upload.array("images", 10), async (req, res) => {
   try {
-    console.log("FILES:", req.files);
-    console.log("BODY:", req.body);
-
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ msg: "No files uploaded" });
     }
@@ -35,29 +47,29 @@ router.post("/upload", upload.array("images", 10), async (req, res) => {
       return res.status(400).json({ msg: "Category missing" });
     }
 
-    const compressedImages = [];
+    const imagesData = [];
 
     for (const file of req.files) {
-      const newFileName = "compressed-" + file.filename;
+      const newFileName = "img-" + Date.now() + ".webp";
+      const outputPath = path.join("uploads", newFileName);
 
-      await sharp(file.path)
-        .rotate()    // auto-rotate based on EXIF data
-        .resize(800)
-        .jpeg({ quality: 70 })
-        .toFile(`uploads/${newFileName}`);
+      await processImage(file.path, outputPath);
 
-      fs.unlinkSync(file.path);
+      // delete original file safely
+      if (fs.existsSync(file.path)) {
+        fs.unlinkSync(file.path);
+      }
 
-      compressedImages.push({
+      imagesData.push({
         image: newFileName,
-        category: category,
-        description: description,
+        category,
+        description,
       });
     }
 
-    await Gallery.insertMany(compressedImages);
+    await Gallery.insertMany(imagesData);
 
-    res.json({ msg: "Uploaded successfully" });
+    res.json({ msg: "Uploaded in 1080p successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
@@ -82,17 +94,19 @@ router.get("/", async (req, res) => {
 });
 
 
-//  DELETE IMAGE
+// DELETE IMAGE
 router.delete("/:id", async (req, res) => {
   try {
     const image = await Gallery.findById(req.params.id);
 
     if (!image) return res.status(404).json({ msg: "Not found" });
 
-    // delete file from folder
-    fs.unlinkSync(`uploads/${image.image}`);
+    const filePath = path.join("uploads", image.image);
 
-    // delete from DB
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
     await Gallery.findByIdAndDelete(req.params.id);
 
     res.json({ msg: "Deleted successfully" });
@@ -101,7 +115,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//  UPDATE DATA
+
+// UPDATE IMAGE
 router.put("/:id", upload.single("image"), async (req, res) => {
   try {
     const imageDoc = await Gallery.findById(req.params.id);
@@ -114,19 +129,21 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       category: req.body.category,
     };
 
-    //  If new image uploaded
     if (req.file) {
-      const newFileName = "compressed-" + req.file.filename;
+      const newFileName = "img-" + Date.now() + ".webp";
+      const outputPath = path.join("uploads", newFileName);
 
-      await sharp(req.file.path)
-       //.rotate()    // auto-rotate based on EXIF data
-        .resize(800)
-        .jpeg({ quality: 70 })
-        .toFile(`uploads/${newFileName}`);
+      await processImage(req.file.path, outputPath);
 
       // delete old image
-      fs.unlinkSync(`uploads/${imageDoc.image}`);
-      fs.unlinkSync(req.file.path);
+      const oldPath = path.join("uploads", imageDoc.image);
+      if (fs.existsSync(oldPath)) {
+        fs.unlinkSync(oldPath);
+      }
+
+      if (fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
 
       updatedData.image = newFileName;
     }

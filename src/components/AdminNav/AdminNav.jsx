@@ -22,7 +22,7 @@ const AdminNav = () => {
 
           {/* Logo */}
           <div className={styles['logo']}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo"  loading="lazy"/>
           </div>
 
           {/* Hamburger Menu */}

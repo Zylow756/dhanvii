@@ -32,7 +32,7 @@ const StudentDistance = () => {
     <div className={styles.root}>
       <Nav />
       <div className={styles.content}>
-        <h1 className="hindiHeading">Far Away Distance Students</h1>
+        <h1 className="hindiHeading">Distance doesn't Matter when Skill Speaks</h1>
 
         <div className={styles.container}>
           {sortedStudents.map((student) => (
@@ -46,8 +46,8 @@ const StudentDistance = () => {
               }}
             >
               <h1 className={styles.heading}>Distance</h1>
-              <h2 className={styles.address}>{student.city}</h2>
-              <h2 className={styles.address}>{student.address} - {student.distance}km</h2>
+              <h2 className={styles.address}>{student.distance} km - {student.address}</h2>
+              <h2 className={styles.city}>{student.city}</h2>
 
               <img
                 src={`http://localhost:5000/uploads/${student.image}`}

@@ -1,5 +1,5 @@
-import jacket2 from "../assets/images/25-04-2026-12psd.jpg";
-import jacket3 from "../assets/images/56.jpg";
+import jacket2 from "../assets/images/banner.jpg";
+import jacket3 from "../assets/images/banner.jpg";
 
 
 export const jacketAds = [

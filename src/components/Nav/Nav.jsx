@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from './Nav.module.css';
-import logo from '../../assets/images/logo 4k.jpg';
+import logo from '../../assets/images/logo.jpg';
 import React, { useState } from "react";
 import Login from "../../pages/Login";
 

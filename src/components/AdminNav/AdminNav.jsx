@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from '../Nav/Nav.module.css';
-import logo from '../../assets/images/logo.jpeg';
+import logo from '../../assets/images/logo.jpg';
 import React, { useState } from "react";
 import LogoutPopup from "../logoutPopup/LogoutPopup";
 

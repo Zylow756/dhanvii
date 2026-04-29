@@ -162,7 +162,7 @@ const AdminDistanceGallery = () => {
           <button
             key={i}
             onClick={() => setCurrentPage(i + 1)}
-            style={currentPage === i + 1 ? styles.active : ""}
+           style={currentPage === i + 1 ? styles.active : null}
           >
             {i + 1}
           </button>

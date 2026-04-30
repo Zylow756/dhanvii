@@ -46,7 +46,7 @@ const Courses = () => {
         <span><strong>Module E :</strong> Soft Skill Development</span>,
         <span><strong>Module F :</strong> Office Documentation & Record Management</span>,
         <span><strong>Module G :</strong> Banking Operation</span>,
-        <strong>Part B : Computerized Accounting[Tally Prime]</strong>,
+        <strong>Part B : Computerized Accounting [Tally Prime]</strong>,
         <span><strong>Module 1 :</strong> Special Fundamental & Financial Accounting</span>,
         <span><strong>Module 2 :</strong> Transactions Vouchers</span>,
         <span><strong>Module 3 :</strong> Inventory Information & Features</span>,
@@ -59,7 +59,7 @@ const Courses = () => {
       duration: <strong>Duration: 8 Months[7 month course + 1 month job]</strong>,
       desc: <strong>FREE: Banking & Accounting in MS Excel</strong>,
       content: [
-        <strong>Part A : Financial Accounting[Manual Accounting]</strong>,
+        <strong>Part A : Financial Accounting [Manual Accounting]</strong>,
         <span><strong>Module A :</strong> Principles & Rules of Accounting</span>,
         <span><strong>Module B :</strong> Bookkeeping & Practice</span>,
         <span><strong>Module C :</strong> Stock & Inventory Maintain</span>,
@@ -69,7 +69,7 @@ const Courses = () => {
         <span><strong>Module G :</strong> Banking Operation</span>,
         <span><strong>Module H :</strong> Tax Deduction at Sources[TDS]</span>,
         <span><strong>Module I :</strong> Income Tax</span>,
-        <strong>Part B : Computerized Accounting[Tally Prime]</strong>,
+        <strong>Part B : Computerized Accounting [Tally Prime]</strong>,
         <span><strong>Module 1 :</strong> Special Fundamental & Financial Accounting</span>,
         <span><strong>Module 2 :</strong> Transactions Vouchers</span>,
         <span><strong>Module 3 :</strong> Inventory Information & Features</span>,
@@ -83,7 +83,7 @@ const Courses = () => {
       duration: <strong>Duration: 12 Months[9 month course + 3 month job]</strong>,
       desc: <strong>FREE: Banking,MS Word & Excel & Online Application & Forms</strong>,
       content: [
-        <strong>Part A : Financial Accounting[Manual Accounting]</strong>,
+        <strong>Part A : Financial Accounting [Manual Accounting]</strong>,
         <span><strong>Module A :</strong> Principles & Rules of Accounting</span>,
         <span><strong>Module B :</strong> Bookkeeping & Practice</span>,
         <span><strong>Module C :</strong> Stock & Inventory Maintain</span>,
@@ -97,7 +97,7 @@ const Courses = () => {
         <span><strong>Module K :</strong> Payroll/Salary Managements</span>,
         <span><strong>Module L :</strong> Discussion on Fixed Assets</span>,
         <span><strong>Module M :</strong> Discussion on Project Reports,Documentations & Financial Data Analyses</span>,
-        <strong>Part B : Computerized Accounting[Tally Prime]</strong>,
+        <strong>Part B : Computerized Accounting [Tally Prime]</strong>,
         <span><strong>Module 1 :</strong> Special Fundamental & Financial Accounting</span>,
         <span><strong>Module 2 :</strong> Transactions Vouchers</span>,
         <span><strong>Module 3 :</strong> Inventory Information & Features</span>,
@@ -166,16 +166,22 @@ const Courses = () => {
               <ul className={styles.moduleList}>
                 {course.content.map((item, i) => {
 
-                  // 👉 CASE 1: Part headings (strong tag)
+                  //  CASE 1: Part headings (strong tag)
                   if (item?.type === "strong") {
                     return (
-                      <li key={i} className={styles.part}>
-                        {item.props.children}
+                      <li key={i} className={styles.moduleItem}>
+                        <span className={styles.label}>
+                          {item.props.children.split(":")[0]} :
+                        </span>
+
+                        <span className={styles.textStrong}>
+                          {item.props.children.split(":")[1]}
+                        </span>
                       </li>
                     );
                   }
 
-                  // 👉 CASE 2: Module rows (span)
+                  //  CASE 2: Module rows (span)
                   if (item?.type === "span") {
                     const children = item.props.children;
 
@@ -193,7 +199,7 @@ const Courses = () => {
                     );
                   }
 
-                  // 👉 CASE 3: Plain text (last course list)
+                  //  CASE 3: Plain text (last course list)
                   return (
                     <li key={i} className={styles.simpleItem}>
                       <span className={styles.bullet}>➤</span>
@@ -205,12 +211,9 @@ const Courses = () => {
                 })}
               </ul>
             </div>
-
-
           </div>
         ))}
       </div>
-
       <Footer />
     </div>
   );

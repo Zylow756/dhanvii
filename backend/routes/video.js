@@ -3,27 +3,30 @@ import Video from "../models/Video.js";
 
 const router = express.Router();
 
-// Add or Update video
+// ADD NEW VIDEO
 router.post("/video", async (req, res) => {
-  const { youtubeUrl } = req.body;
+  try {
+    const { youtubeUrl } = req.body;
 
-  let video = await Video.findOne();
+    const newVideo = new Video({ youtubeUrl });
+    await newVideo.save();
 
-  if (video) {
-    video.youtubeUrl = youtubeUrl;
-    await video.save();
-  } else {
-    video = new Video({ youtubeUrl });
-    await video.save();
+    res.json(newVideo);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  res.json(video);
 });
 
-// Get video
+// GET ALL VIDEOS
 router.get("/video", async (req, res) => {
-  const video = await Video.findOne();
-  res.json(video);
+  const videos = await Video.find().sort({ createdAt: -1 });
+  res.json(videos);
+});
+
+// DELETE VIDEO (optional but important)
+router.delete("/video/:id", async (req, res) => {
+  await Video.findByIdAndDelete(req.params.id);
+  res.json({ message: "Deleted" });
 });
 
 export default router;
